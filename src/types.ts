@@ -4,7 +4,7 @@ export type Tuser = {
     password: string
 }
 
-export type Tproduto = {
+export type Tproduct = {
     id: string,
     name: string,
     price: number,

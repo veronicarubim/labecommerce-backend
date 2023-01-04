@@ -1,4 +1,6 @@
-export const users: {id: string, email: string, password: string}[] = [
+import { Tuser , Tproduct , Tpurchase } from "./types"
+
+export const users: Tuser[] = [
     {
         id: 'veronicarubim',
         email: 'veronica.rubim@gmail.com',
@@ -11,7 +13,7 @@ export const users: {id: string, email: string, password: string}[] = [
     }
 ]
 
-export const products: {id: string, name: string, price: number, category: string}[] =
+export const products: Tproduct[] =
 [
     {   
         id: '1',
@@ -33,7 +35,7 @@ export const products: {id: string, name: string, price: number, category: strin
     }
 ]
 
-export const purchase: {userId: string, productId: string, quantity: number, totalPrice: number} [] = [
+export const purchase: Tpurchase[] = [
     {
         userId: 'veronicarubim',
         productId: 'vestido',
