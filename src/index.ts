@@ -212,11 +212,13 @@ app.get('/users/:id/purchases', (req: Request, res: Response) => {
       
     app.delete('/product/:id', (req: Request, res: Response) => {
         try {
-            const id = req.params.id 
-            const productIndex = products.findIndex((product) => {
+        const id = req.params.id 
+        const productIndex = products.findIndex((product) => {
                 return product.id === id
             })
-        
+        if (!productIndex) {
+            res.status(400).send("Produto não existe")
+        }
         if (productIndex >= 0) {
             products.splice(productIndex, 1)
             res.status(200).send('Produto deletado com sucesso')
