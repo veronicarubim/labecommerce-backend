@@ -14,13 +14,13 @@ app.listen(3003, () => {
     console.log("Servidor rodando na porta 3003");
 });
 
-app.get('/ping', (req: Request, res: Response) => {
+app.get('/ping', async (req: Request, res: Response) => {
     res.send('Pong!')
 });
 
 // Mostrar os usuários
 
-app.get('/users', (req: Request, res: Response) => {
+app.get('/users', async (req: Request, res: Response) => {
     
     try {
     res.status(200).send(users)
@@ -33,7 +33,7 @@ app.get('/users', (req: Request, res: Response) => {
 
 // Mostrar os produtos
 
-app.get('/products', (req: Request, res: Response) => {
+app.get('/products', async (req: Request, res: Response) => {
    
     try {
     res.status(200).send(products)
@@ -46,7 +46,7 @@ app.get('/products', (req: Request, res: Response) => {
 
 // Pesquisar produtos byQuery, deve validar com um caractere
 
-app.get('/products/search', (req: Request, res: Response) => {
+app.get('/products/search', async (req: Request, res: Response) => {
     
     try {
         const q = req.query.q as string
@@ -72,7 +72,7 @@ app.get('/products/search', (req: Request, res: Response) => {
 
 // Cadastrar usuário 
 
-app.post('/user', (req: Request, res: Response) => {
+app.post('/user', async (req: Request, res: Response) => {
     
     try {
         const {id, email, password} = req.body as Tuser
@@ -94,7 +94,7 @@ app.post('/user', (req: Request, res: Response) => {
 
 // Cadastrar produto
 
-app.post('/product', (req: Request, res: Response) => {
+app.post('/product', async (req: Request, res: Response) => {
     
     try {
         const {id, name, price, category} = req.body as Tproduct
@@ -120,7 +120,7 @@ app.post('/product', (req: Request, res: Response) => {
 
 // Cadastrar compra
 
-app.post('/purchase',(req: Request, res: Response) => {
+app.post('/purchase', async (req: Request, res: Response) => {
     
     try {
         const {userId, productId, quantity, totalPrice} = req.body as Tpurchase
@@ -142,7 +142,7 @@ app.post('/purchase',(req: Request, res: Response) => {
 
 // Pesquisando produto pelo Id by params
 
-app.get('/product/:id', (req: Request, res: Response) => {
+app.get('/product/:id', async (req: Request, res: Response) => {
    
    try {
         const id = (req.params.id)
@@ -162,7 +162,7 @@ app.get('/product/:id', (req: Request, res: Response) => {
 
 // Pesquisando userId da compra dentro dos users (???)
 
-app.get('/users/:id/purchases', (req: Request, res: Response) => {
+app.get('/users/:id/purchases', async (req: Request, res: Response) => {
     /* const id = (req.params.id)
     const userSearch = users.filter((user) => {
           return user.id === id
@@ -189,7 +189,7 @@ app.get('/users/:id/purchases', (req: Request, res: Response) => {
 
     //Metodo DELETE
 
-    app.delete('/user/:id', (req: Request, res: Response) => {
+    app.delete('/user/:id', async (req: Request, res: Response) => {
         
         try {
             const id = req.params.id 
@@ -210,7 +210,7 @@ app.get('/users/:id/purchases', (req: Request, res: Response) => {
 
     })
       
-    app.delete('/product/:id', (req: Request, res: Response) => {
+    app.delete('/product/:id', async (req: Request, res: Response) => {
         try {
         const id = req.params.id 
         const productIndex = products.findIndex((product) => {
@@ -233,7 +233,7 @@ app.get('/users/:id/purchases', (req: Request, res: Response) => {
 
     // Metodo PUT - editando usuario
 
-    app.put('/user/:id', (req: Request, res: Response) => {
+    app.put('/user/:id', async (req: Request, res: Response) => {
         const id = req.params.id
         const newId = req.body.id as string | undefined
         const newEmail = req.body.email as string | undefined
@@ -253,7 +253,7 @@ app.get('/users/:id/purchases', (req: Request, res: Response) => {
 
     // editando produto category: CATEGORIA.ROUPA
 
-    app.put('/produt/:id', (req: Request, res: Response) => {
+    app.put('/produt/:id', async (req: Request, res: Response) => {
         const id = req.params.id
         const newId = req.body.id as string | undefined
         const newName = req.body.name as string | undefined
@@ -272,7 +272,7 @@ app.get('/users/:id/purchases', (req: Request, res: Response) => {
           
             res.status(200).send("Produto alterado com sucesso")
         }
-        })
+        });
 
 
 /* createUser("Marta","marta.rubim@gmail","123456")
